@@ -1,0 +1,73 @@
+
+<app-header></app-header>
+
+
+
+<div style="margin:2%">
+
+    <div class ="d-flex justify-content-center">
+        <div>
+            <h1 class ='ml-2'>Select an AI Engine of your choice</h1>
+            <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>AI Engine</mat-label>
+                    <mat-select [(ngModel)]="selectedEngine" name="engine">
+                    <mat-option *ngFor="let engine of engines" [value]="engine.value">
+                        {{engine.viewValue}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+    <div>
+
+        <h1 class ='ml-2'>Fun With AI</h1>
+        <div >
+        <p>
+            <mat-form-field class="shopify-full-width" appearance="outline">
+            <mat-label>Enter the Prompt</mat-label>
+            <textarea matInput [formControl]="promptFormControl" placeholder="write a poem about dinousaurs in the snow">Write a </textarea>
+            </mat-form-field>
+        </p>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <button [disabled]= "promptFormControl.hasError('required')" class="btn btn-custom-primary z-depth mb-2 mr-2" (click)="submitPrompt()">Submit</button>
+        </div>
+    
+
+        
+    </div>
+</div>
+
+
+    <div *ngIf="responses.length >0">
+        <div>
+        <h1 class="ml-2">Responses</h1>
+        <div *ngFor= "let response of responses" class="col-12">
+            <mat-card class="z-depth mt-2" >
+              <mat-card-content>
+                <h3><b>Prompt : </b>{{response.prompt}}</h3>
+
+                <h3><b>Response : </b>{{response.response}}</h3>
+            
+             </mat-card-content>
+           </mat-card>
+           </div>
+        </div>
+
+
+    </div>
+
+            
+
+</div>
+
+
+
+
